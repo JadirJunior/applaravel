@@ -23,7 +23,7 @@ class AutorController extends Controller
         //dd('acessando o controller autor controller - index');
 
         //essa variavel service eu criei no construtor e atribui o valor do model
-        $registros =  $this->service->index(10);
+        $registros =  $this->service->index();
         //$registros = Autor::index(10);
 
         return view('autor.index', [
@@ -46,9 +46,7 @@ class AutorController extends Controller
     public function store(Request $request)
     {
         //
-
-        $registro = $request->all();
-        $this->service->create($registro);
+        $this->service->store($request);
         return redirect()->route('autor.index');
         
     }
@@ -58,12 +56,11 @@ class AutorController extends Controller
      */
     public function show(string $id)
     {
-        //
 
         $registro = $this->service->show($id);
 
         return view('autor.show', [
-            'registro' => $registro,
+            'registro' => $registro['registro'],
         ]);
     }
 
@@ -75,13 +72,8 @@ class AutorController extends Controller
         //complete a função de editar
         $registro = $this->service->show($id);
 
-        //Validação para caso o registro não exista
-        //if(!$registro){
-          //  return redirect()->back();
-        //}
-
         return view('autor.edit', [
-            'registro'=> $registro,
+            'registro'=> $registro['registro'],
         ]);
 
 
@@ -93,22 +85,19 @@ class AutorController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $registro = $request->all();
 
+        //dd('Testeeeeee');
+        $this->service->update($request, $id);
 
+        return redirect()->route('autor.index');
 
-        $autor = $this->service->show($id);
-
-        $autor->update($registro);
-
-        dd($registro);
     }
 
     public function delete($id) {
         $registro = $this->service->show($id);
-
+        
         return view('autor.destroy', [
-            'registro'=> $registro,
+            'registro'=> $registro['registro'],
         ]);
     }
 
@@ -118,11 +107,7 @@ class AutorController extends Controller
     public function destroy(string $id)
     {
 
-        $registro = $this->service->show($id);
-
-        $registro->delete();
-
-        $registros = $this->service->all;
+        $this->service->destroy($id);
         
         return redirect()->route('autor.index');
         

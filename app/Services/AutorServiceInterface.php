@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 interface AutorServiceInterface {
 
     public function index();
-    
 
     public function create();
 
