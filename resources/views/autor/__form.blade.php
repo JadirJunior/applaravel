@@ -91,3 +91,8 @@
                 @enderror
         </div>
 </div>    
+
+
+<!-- <pre>
+    {{ print_r($errors) }}
+</pre> -->

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AutorFormRequest extends FormRequest
 {
@@ -32,9 +33,10 @@ class AutorFormRequest extends FormRequest
         ];
 
 
-        if ($this->method() == "POST") {
+        if ($this->method() == "PUT") {
             $rules['email'] = [
-                'required'
+                'required',
+                Rule::unique('autors')->ignore($this->id)
             ];
         }
 

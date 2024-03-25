@@ -45,9 +45,11 @@ class AutorService implements AutorServiceInterface {
 
     public function update(Request $request, string $id) {
 
-        $request->validate([
-            $registro = $request->all()
-        ]);
+        // $request->validate([
+        //     $registro = $request->all()
+        // ]);
+
+        $registro = $request->all();   
 
         $autor = $this->repository->find($id);
 
