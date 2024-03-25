@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AutorFormRequest;
 use App\Models\Autor;
 use App\Services\AutorServiceInterface;
 use Illuminate\Http\Request;
@@ -43,9 +44,8 @@ class AutorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AutorFormRequest $request)
     {
-        //
         $this->service->store($request);
         return redirect()->route('autor.index');
         
@@ -82,7 +82,7 @@ class AutorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AutorFormRequest $request, string $id)
     {
         //
 

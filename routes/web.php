@@ -25,23 +25,17 @@ Route::get('/', function () {
 Route::prefix('autor')->group(function () {
 
     Route::get('/index',[AutorController::class,'index'])->name('autor.index');
-
     Route::get('/create',[AutorController::class,'create'])->name('autor.create');
-
-    //Editar
     Route::get('/edit/{id}',[AutorController::class,'edit'])->name('autor.edit');
-
-
-    //Deletar
     Route::get('/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
-
-    //Listar com id
     Route::get('/show/{id}',[AutorController::class,'show'])->name('autor.show');
-
     Route::get('/delete/{id}',[AutorController::class,'delete'])->name('autor.delete');
 
-    Route::post('/update/{id}',[AutorController::class,'update'])->name('autor.update');
+    
     Route::post('/store',[AutorController::class,'store'])->name('autor.store');
     Route::post('/destroy/{id}',[AutorController::class,'destroy'])->name('autor.destroy');
+    
 
+
+    Route::put('/update/{id}',[AutorController::class,'update'])->name('autor.update');
 });
